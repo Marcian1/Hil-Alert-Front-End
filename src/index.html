@@ -29,7 +29,7 @@
           if (Notification.permission === "granted") {
             // Enable pusher logging - don't include this in production
             Pusher.logToConsole = true;
-            var pusher = new Pusher("31977acdf3ac9290e324", {
+            var pusher = new Pusher("42035f70e795d8c89b15", {
               cluster: "eu",
             });
 
@@ -61,7 +61,7 @@
               propertiesBody =
                 "The following properties changed: " +
                 data.properties +
-                "on the hil " +
+                " on the hil " +
                 data.hil +
                 "!";
 
@@ -99,7 +99,7 @@
         // n.addEventListener('close', function(ev){
         //    console.log('CLOSE', ev.currentTarget.body);
         // });
-        setTimeout(n.close.bind(n), 3000); //close notification after 3 seconds
+        setTimeout(n.close.bind(n), 8000); //close notification after 3 seconds
       }
     </script>
   </body>
