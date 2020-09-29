@@ -63,6 +63,6 @@ export class IndexComponent implements OnInit {
     const diff = Date.now() - hilDate.getTime();
     const minutes = Math.floor(diff / 1000 / 60);
 
-    return minutes > 30;
+    return minutes < 30;
   }
 }
