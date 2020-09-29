@@ -47,6 +47,10 @@ export class IndexComponent implements OnInit {
     const dialogRef = this.dialog.open(LogindialogComponent, {disableClose: true});
 
     dialogRef.afterClosed().subscribe((username: string) => {
+      if(!username){
+        this.openUserDialog();
+        return;
+      }
       this.userService.login(username).subscribe(
         (data) => {
           this.toastr.success('Welcome', 'Success!');

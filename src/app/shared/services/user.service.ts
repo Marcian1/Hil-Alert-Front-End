@@ -24,7 +24,7 @@ export class UserService {
 
   public authSubject: BehaviorSubject<User>;
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router) {
     this.authSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem('alert_user'))
     );
@@ -57,5 +57,8 @@ export class UserService {
   logout(): void {
     localStorage.removeItem('alert_user');
     this.router.navigate(['/']);
+    if (this.router.url === '/') {
+    window.location.reload();
+    }
   }
 }
