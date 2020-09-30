@@ -44,9 +44,9 @@
               window.navigator.vibrate(200); // vibrate for 200ms
             });
 
-            var channel = pusher.subscribe("general");
+            var channel = pusher.subscribe(user);
             channel.bind("no-data-retrieved", function (data) {
-              // alert(JSON.stringify(data));
+               alert(JSON.stringify(data));
 
               propertiesBody =
                 "This hil has not received an update for more that 2 minutes: " +

@@ -39,6 +39,17 @@ export class UserService {
       map((authResponse: User) => {
         if (authResponse) {
           localStorage.setItem('alert_user', JSON.stringify((authResponse)));
+          const user = JSON.parse(localStorage.getItem('alert_user'));
+          const hils =  user.hils;
+          const properties = user.properties;
+          localStorage.setItem(
+            'hils',
+            JSON.stringify(hils.map((x) => x.labcarname))
+          );
+          localStorage.setItem(
+            'properties',
+            JSON.stringify(properties.map((x) => x.name))
+          );
           this.authSubject.next(authResponse);
           return authResponse;
         }
@@ -56,6 +67,8 @@ export class UserService {
 
   logout(): void {
     localStorage.removeItem('alert_user');
+    localStorage.removeItem('hils');
+    localStorage.removeItem('properties');
     this.router.navigate(['/']);
     if (this.router.url === '/') {
     window.location.reload();
