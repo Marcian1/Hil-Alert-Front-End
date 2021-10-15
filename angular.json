@@ -114,7 +114,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -132,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "hil-alert"
+  "defaultProject": "hil-alert",
+  "cli": {
+    "analytics": "ba8feccc-15e2-4e69-afdf-22bfe5214e29"
+  }
 }

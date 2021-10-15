@@ -25,6 +25,7 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     if (localStorage.getItem('alert_user') === null) {
       this.openUserDialog();
     }

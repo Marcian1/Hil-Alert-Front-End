@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://powerful-anchorage-59625.herokuapp.com/api',
+  //apiUrl: 'http://homestead.test/api',
+  apiUrl: 'https://13b6-82-79-160-236.ngrok.io/api'
 };

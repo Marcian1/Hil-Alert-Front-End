@@ -29,7 +29,7 @@
   "dataGroups": [
     {
       "name": "hils-api",
-      "urls": ["https://powerful-anchorage-59625.herokuapp.com/api/hils"],
+      "urls": ["https://8d72-82-79-160-236.ngrok.io"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 20,
