@@ -5,7 +5,7 @@ import {
 import { HilService, Hil } from 'src/app/shared/services/hil.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogindialogComponent } from '../logindialog/logindialog.component';
-import { UserService } from 'src/app/shared/services/user.service';
+import { User, UserService } from 'src/app/shared/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -22,10 +22,10 @@ export class IndexComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserService,
     private toastr: ToastrService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    
+
     if (localStorage.getItem('alert_user') === null) {
       this.openUserDialog();
     }
@@ -45,14 +45,16 @@ export class IndexComponent implements OnInit {
   }
 
   openUserDialog(): void {
-    const dialogRef = this.dialog.open(LogindialogComponent, {disableClose: true});
+    const dialogRef = this.dialog.open(LogindialogComponent, { disableClose: true });
 
-    dialogRef.afterClosed().subscribe((username: string) => {
-      if(!username){
+    dialogRef.afterClosed().subscribe((user: User) => {
+
+      if (!user) {
         this.openUserDialog();
         return;
       }
-      this.userService.login(username).subscribe(
+
+      this.userService.login(user).subscribe(
         (data) => {
           this.toastr.success('Welcome', 'Success!');
           window.location.reload();

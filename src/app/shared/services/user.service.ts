@@ -8,6 +8,8 @@ import { Hil } from './hil.service';
 export interface User {
   id: number;
   username: string;
+  password: string;
+  email: string;
   hils: Hil[];
   properties: string[];
 }
@@ -34,11 +36,12 @@ export class UserService {
     return this.authSubject.value;
   }
 
-  login(username: string): Observable<User> {
-    return this.http.post<User>(environment.apiUrl + '/login', { username }).pipe(
+  login(user: User): Observable<User> {
+    return this.http.post<User>(environment.apiUrl + '/login', user).pipe(
       map((authResponse: User) => {
         if (authResponse) {
-          localStorage.setItem('alert_user', JSON.stringify((authResponse)));
+          localStorage.setItem('alert_user', JSON.stringify((authResponse[0])));
+          localStorage.setItem('token', JSON.stringify((authResponse['token'])));
           const user = JSON.parse(localStorage.getItem('alert_user'));
           const hils =  user.hils;
           const properties = user.properties;
@@ -50,6 +53,7 @@ export class UserService {
             'properties',
             JSON.stringify(properties.map((x) => x.name))
           );
+          
           this.authSubject.next(authResponse);
           return authResponse;
         }
