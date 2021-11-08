@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- code here -->
+  <div class="card">
+    <div class="card-image">
+      <h2 class="card-heading">
+        Welcome
+        <small>Let's reset the password</small>
+      </h2>
+    </div>
+    <form class="card-form">
+      <div class="input">
+        <input
+          [(ngModel)]="user.password"
+          name="password"
+          type="password"
+          class="input-field"
+          required
+        />
+        <label class="input-label">Password</label>
+      </div>
+      <div class="input">
+        <input
+          [(ngModel)]="user.password_confirm"
+          name="password_confirm"
+          type="password"
+          class="input-field"
+          required
+        />
+        <label class="input-label">Password Confirm</label>
+      </div>
+      <div class="action">
+        <button class="action-button" type="button" (click)="onProceedResetPassword(user)">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="card-info"></div>
+  </div>
+</div>

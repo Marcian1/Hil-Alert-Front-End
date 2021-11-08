@@ -9,9 +9,11 @@ export interface User {
   id: number;
   username: string;
   password: string;
+  password_confirm: string;
   email: string;
   hils: Hil[];
   properties: string[];
+  token: string
 }
 const httpOptions = {
   headers: new HttpHeaders({
@@ -59,6 +61,18 @@ export class UserService {
         }
       })
     );
+  }
+  register(user) {
+    console.log('service',user)
+    return this.http.post<User>(environment.apiUrl + '/register', user);
+  }
+  reset(user) {
+    console.log('reset',user)
+    return this.http.post<User>(environment.apiUrl + '/reset', user);
+  }
+  forgot(user) {
+    console.log('forgot',user)
+    return this.http.post<User>(environment.apiUrl + '/forgot', user);
   }
 
   sendHils(username, hils: Array<number>): Observable<any> {

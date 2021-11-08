@@ -1,25 +1,58 @@
 <mat-dialog-content class="mat-typography">
   <form class="example-form">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" required>
       <mat-label>Username </mat-label>
-      <input matInput [(ngModel)]="user.username" name="user" placeholder="Enter your username" required />
+      <input
+        matInput
+        [(ngModel)]="user.username"
+        name="user"
+        placeholder="Enter your username"
+        required
+      />
     </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
+    <mat-error *ngIf="user.username===''"> Username cannot be empty! </mat-error>
+    <br />
+    <mat-form-field class="example-full-width" required>
       <mat-label>Enter your email </mat-label>
-      <input matInput [(ngModel)]="user.email" name="email" placeholder="Enter your password" required />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Enter your Password </mat-label>
-      <input matInput [(ngModel)]="user.password" name="password" placeholder="Enter your password" required />
-    </mat-form-field>
+      <input
+        matInput
+        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+        [(ngModel)]="user.email"
+        name="email"
+        placeholder="Enter your password"
+        required
+      />
+      <mat-error *ngIf="user.email===''"> Email cannot be empty! </mat-error>
+      <mat-error *ngIf="!testRegex(user.email) && user.email !== ''"> Entry must be a valid email </mat-error>
 
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width" required>
+      <mat-label>Enter your Password </mat-label>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="user.password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      />
+    </mat-form-field>
+    <mat-error *ngIf="user.password===''"> Email cannot be empty! </mat-error>
+    <br />
   </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
+<mat-dialog-actions style="display: inline">
+  <button mat-raised-button color="primary" (click)="openRegisterDialog()">
+    Register
+  </button>
   <button mat-raised-button color="primary" [mat-dialog-close]="user">
-    Save and close
+    Login
+  </button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="openForgotDialog()">
+    Forgot password
   </button>
 </mat-dialog-actions>
