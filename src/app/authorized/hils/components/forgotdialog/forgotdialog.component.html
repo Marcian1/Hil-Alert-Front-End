@@ -1,0 +1,28 @@
+<mat-dialog-content class="mat-typography">
+  <form class="example-form">
+    <mat-form-field class="example-full-width" required>
+      <mat-label>Enter your email </mat-label>
+      <input
+        matInput
+        [(ngModel)]="user.email"
+        name="email"
+        placeholder="Enter your password"
+        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+        required
+      />
+    </mat-form-field>
+    <mat-error *ngIf="user.email === ''"> Email cannot be empty! </mat-error>
+    <mat-error *ngIf="!testRegex(user.email) && user.email !== ''">
+      Entry must be a valid email
+    </mat-error>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions style="display: inline">
+  <button mat-raised-button color="primary" [mat-dialog-close]>
+    Go back to login
+  </button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="user">
+    Send email
+  </button>
+</mat-dialog-actions>

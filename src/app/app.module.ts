@@ -11,13 +11,17 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ResetComponent } from './reset/reset.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResetComponent
   ],
   imports: [
+    SharedModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,

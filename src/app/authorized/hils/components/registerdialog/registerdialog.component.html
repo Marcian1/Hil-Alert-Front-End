@@ -1,0 +1,73 @@
+<mat-dialog-content class="mat-typography" style="height: 55vh">
+  <mat-dialog-content class="mat-typography" >
+    <form class="example-form">
+      <mat-form-field class="example-full-width" required>
+        <mat-label>Username </mat-label>
+        <input
+          matInput
+          [(ngModel)]="user.username"
+          name="user"
+          placeholder="Enter your username"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngIf="user.username === ''">
+        Username cannot be empty!
+      </mat-error>
+  
+      <mat-form-field class="example-full-width" required>
+        <mat-label>Enter your email </mat-label>
+        <input
+          matInput
+          [(ngModel)]="user.email"
+          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+          name="email"
+          placeholder="Enter your password"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngIf="user.email === ''"> Email cannot be empty! </mat-error>
+      <mat-error *ngIf="!testRegex(user.email) && user.email !== ''">
+        Entry must be a valid email
+      </mat-error>
+   
+      <mat-form-field class="example-full-width" required>
+        <mat-label>Enter your Password </mat-label>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngIf="user.password === ''">
+        Password cannot be empty!
+      </mat-error>
+  
+      <mat-form-field class="example-full-width" required>
+        <mat-label>Confirm password</mat-label>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="user.password_confirm"
+          name="password_confirm"
+          placeholder="Enter your password"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngIf="user.password_confirm === ''">
+        Confirmed password cannot be empty!
+      </mat-error>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" style="height: 10vh">
+    <button mat-raised-button color="primary" [mat-dialog-close]="user">
+      Save and close
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]>
+      Go back to login
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

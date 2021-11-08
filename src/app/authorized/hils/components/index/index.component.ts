@@ -48,18 +48,22 @@ export class IndexComponent implements OnInit {
     const dialogRef = this.dialog.open(LogindialogComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe((user: User) => {
-
-      if (!user) {
+      console.log('user',user);
+      if (user.username === '' || user.password === '' || user.email === '' ) {
         this.openUserDialog();
+        this.toastr.error('Unauthorized','Please do not leave credentials empty');
         return;
       }
 
       this.userService.login(user).subscribe(
         (data) => {
-          this.toastr.success('Welcome', 'Success!');
+          this.toastr.success('Welcome', 'You have been authenticated!');
           window.location.reload();
         },
-        (error) => console.log(error)
+        (error) => { 
+          this.toastr.error('Unauthorized','Login Failed!');
+          this.openUserDialog();
+        }
       );
     });
   }
@@ -72,4 +76,5 @@ export class IndexComponent implements OnInit {
 
     return minutes < 30;
   }
+  
 }
